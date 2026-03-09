@@ -1,5 +1,3 @@
-/* componets.css */
-/* Tarjeta Principal */
 .tc-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -15,7 +13,6 @@
     border-color 0.3s ease;
 }
 
-/* Grupos de Entrada */
 .tc-input-group {
   margin-bottom: 24px;
 }
@@ -45,7 +42,6 @@
   box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
-/* Botones */
 .tc-btn-main {
   width: 100%;
   background: var(--accent);
@@ -64,7 +60,6 @@
   transform: translateY(-1px);
 }
 
-/* Botón de cambio de tema (Estilo secundario) */
 .tc-btn-theme {
   margin-top: 16px;
   width: 100%;
@@ -97,8 +92,6 @@ select.tc-input {
   padding-right: 40px;
 }
 
-/* store/index.html */
-/* Hero Card */
 .hero-card {
   background: var(--gradient);
   border-radius: 24px;
@@ -108,7 +101,6 @@ select.tc-input {
   text-align: center;
 }
 
-/* Buscador */
 .search-container {
   margin-bottom: 24px;
 }
@@ -132,7 +124,6 @@ select.tc-input {
   font-size: 16px;
 }
 
-/* Chips de Categoría */
 .category-scroll {
   display: flex;
   gap: 10px;
@@ -157,10 +148,9 @@ select.tc-input {
   border-color: var(--accent);
 }
 
-/* Grid y Cards de Producto */
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   margin-top: 20px;
 }
@@ -199,7 +189,6 @@ select.tc-input {
   font-size: 18px;
 }
 
-/* Badge del carrito */
 .cart-icon-wrapper {
   position: relative;
   font-size: 22px;
@@ -222,7 +211,6 @@ select.tc-input {
   border: 2px solid var(--surface);
 }
 
-/* Avatar del usuario */
 .user-avatar-circle {
   width: 40px;
   height: 40px;
@@ -235,7 +223,6 @@ select.tc-input {
   color: var(--text-secondary);
 }
 
-/* Footer de la tarjeta (Precio + Botón) */
 .card-footer {
   display: flex;
   justify-content: space-between;
@@ -262,7 +249,6 @@ select.tc-input {
   transform: scale(1.1);
 }
 
-/* Botón de filtros */
 .filter-btn {
   background: var(--accent);
   color: white;
@@ -276,8 +262,6 @@ select.tc-input {
   font-weight: 600;
 }
 
-/* admin/index.html */
-/* Tablas Estilizadas */
 .tc-table-container {
   background: var(--surface);
   border-radius: 20px;

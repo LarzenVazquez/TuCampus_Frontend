@@ -1,12 +1,15 @@
 import axios from "axios";
 import forge from "node-forge";
 
+/* Configuración de la URL base desde el entorno */
 const BASE_URL = import.meta.env.VITE_API_URL;
 
+/* Instancia de axios para peticiones globales */
 const api = axios.create({
   baseURL: BASE_URL,
 });
 
+/* Interceptor para adjuntar el token Bearer en cada petición */
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) config.headers.Authorization = `Bearer ${token}`;
@@ -15,31 +18,31 @@ api.interceptors.request.use((config) => {
 
 export const apiService = {
   auth: {
-    // --- PUNTO B: LOGIN SEGURO (Cifrado Híbrido) ---
+    /* Login Seguro con Cifrado Híbrido RSA/AES */
     login: async (email, password) => {
-      // 1. Obtener llave pública del server
+      /* 1. Obtener llave pública RSA del servidor */
       const {
         data: { publicKey: pem },
       } = await api.get("/auth/public-key");
       const publicKey = forge.pki.publicKeyFromPem(pem);
 
-      // 2. Generar llave simétrica AES y IV (Escenario 1: IV aleatorio)
+      /* 2. Generar llaves efímeras (Symmetric Key e IV) */
       const aesKey = forge.random.getBytesSync(16);
       const iv = forge.random.getBytesSync(16);
 
-      // 3. Cifrar password con AES
+      /* 3. Cifrado de password con algoritmo AES-CBC */
       const cipher = forge.cipher.createCipher("AES-CBC", aesKey);
       cipher.start({ iv });
       cipher.update(forge.util.createBuffer(password));
       cipher.finish();
       const encryptedPassword = forge.util.encode64(cipher.output.getBytes());
 
-      // 4. Cifrar llave AES con RSA (Llave Pública del server)
+      /* 4. Cifrado RSA de la llave AES para transporte seguro */
       const encryptedAesKey = forge.util.encode64(
         publicKey.encrypt(forge.util.bytesToHex(aesKey)),
       );
 
-      // 5. Enviar todo al login
+      /* 5. Envío de credenciales y llaves cifradas al servidor */
       return await api.post("/auth/login", {
         email,
         encryptedPassword,
@@ -48,12 +51,12 @@ export const apiService = {
       });
     },
 
-    // --- PUNTO A: REGISTRO ---
+    /* Registro de usuario estándar */
     register: async (userData) => {
       return await api.post("/auth/register", userData);
     },
 
-    // --- PUNTO C: INTEGRIDAD + IMGBB ---
+    /* Subida de archivos con integridad (Multipart) */
     uploadIdentityFile: async (file) => {
       const formData = new FormData();
       formData.append("image", file);
@@ -63,12 +66,14 @@ export const apiService = {
       return data;
     },
 
+    /* Cierre de sesión y limpieza de persistencia local */
     logout: async () => {
       try {
         await api.post("/auth/logout");
       } finally {
+        /* Limpiar storage y redirigir al login */
         localStorage.clear();
-        window.location.href = "/indexlogin.html";
+        window.location.href = "/index.html";
       }
     },
   },

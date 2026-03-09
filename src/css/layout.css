@@ -1,4 +1,3 @@
-/* loyout.css */
 .auth-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -7,7 +6,6 @@
   background-color: var(--bg);
 }
 
-/* Sección de Branding (Lado izquierdo en PC) */
 .branding-section {
   display: none;
   background: var(--gradient);
@@ -15,7 +13,7 @@
   justify-content: center;
   align-items: center;
   padding: 60px;
-  color: white; /* El texto sobre el gradiente siempre es blanco */
+  color: white;
 }
 
 .branding-section h1 {
@@ -25,7 +23,6 @@
   margin-bottom: 10px;
 }
 
-/* Sección de Formulario (Lado derecho) */
 .form-section {
   display: flex;
   justify-content: center;
@@ -42,8 +39,6 @@
   }
 }
 
-/* store/index.html */
-/* Contenedor Principal de la Tienda */
 .tc-main-layout {
   padding: 20px;
   max-width: var(--max-width);
@@ -51,7 +46,6 @@
   min-height: 100vh;
 }
 
-/* Header Responsivo */
 .store-header {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
@@ -80,7 +74,6 @@
   letter-spacing: -1px;
 }
 
-/* Navegación que solo aparece en Web */
 .web-nav {
   display: none;
   gap: 32px;
@@ -100,18 +93,17 @@
   color: var(--accent);
 }
 
-/* Ajustes de Escritorio (PC) */
 @media (min-width: 1024px) {
   .web-nav {
     display: flex;
   }
 
   .bottom-nav {
-    display: none; /* Escondemos la barra de abajo en PC */
+    display: none;
   }
 
   .menu-grid {
-    grid-template-columns: repeat(4, 1fr) !important; /* 4 columnas en PC */
+    grid-template-columns: repeat(4, 1fr) !important;
   }
 
   .hero-card {
@@ -120,7 +112,6 @@
   }
 }
 
-/* Navegación Inferior (Móvil) */
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -134,24 +125,21 @@
   z-index: 1000;
 }
 
-/* responsibas */
-/* --- VISTA MÓVIL (Por defecto) --- */
 .web-nav {
-  display: none; /* Escondemos la de arriba */
+  display: none;
 }
 
 .bottom-nav {
-  display: flex; /* Mostramos la de abajo */
+  display: flex;
 }
 
-/* --- VISTA ESCRITORIO (PC) --- */
 @media (min-width: 1024px) {
   .web-nav {
-    display: flex; /* Mostramos la de arriba */
+    display: flex;
   }
 
   .bottom-nav {
-    display: none; /* Escondemos la de abajo */
+    display: none;
   }
 }
 
@@ -167,7 +155,6 @@
   gap: 20px;
 }
 
-/* Ajuste del Hero para que no sea infinito en Web */
 .hero-card {
   display: flex;
   justify-content: space-between;
@@ -182,13 +169,11 @@
   }
 }
 
-/* admin/index.html */
-/* Layout Admin - Solo PC */
 .admin-layout {
   display: grid;
-  grid-template-columns: 280px 1fr; /* Sidebar fijo de 280px */
+  grid-template-columns: 280px 1fr;
   min-height: 100vh;
-  min-width: 1200px; /* Evita que se rompa el diseño si achican la ventana */
+  min-width: 1200px;
   background: var(--bg);
 }
 
@@ -208,7 +193,6 @@
   overflow-y: auto;
 }
 
-/* Links del Sidebar */
 .admin-nav-link {
   display: flex;
   align-items: center;
@@ -232,7 +216,7 @@
   font-size: 18px;
   width: 24px;
 }
-/* Layout de Administración */
+
 .admin-container {
   display: flex;
   min-height: 100vh;
@@ -257,7 +241,6 @@
   max-width: 1400px;
 }
 
-/* Ocultar sidebar en móvil y mostrar un menú distinto si es necesario */
 @media (max-width: 1024px) {
   .sidebar {
     display: none;
@@ -267,7 +250,6 @@
   }
 }
 
-/* Tarjetas de Métricas (Stats) */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -294,8 +276,6 @@
   font-size: 14px;
 }
 
-/* perfil/index.html */
-/* Contenedor principal que centra todo en PC */
 .perfil-wrapper {
   display: flex;
   justify-content: center;
@@ -303,12 +283,11 @@
   min-height: calc(100vh - 150px);
 }
 
-/* El grid de perfil */
 .perfil-container {
   width: 100%;
   max-width: 1000px;
   display: grid;
-  grid-template-columns: 1fr; /* Por defecto 1 columna (Móvil) */
+  grid-template-columns: 1fr;
   gap: 30px;
   background: var(--surface);
   border-radius: 24px;
@@ -317,14 +296,12 @@
   align-self: flex-start;
 }
 
-/* Sidebar del perfil (Avatar e Info) */
 .perfil-sidebar {
   text-align: center;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--border);
 }
 
-/* Opciones de la lista */
 .perfil-option {
   display: flex;
   justify-content: space-between;
@@ -356,10 +333,9 @@
   border-radius: 0;
 }
 
-/* --- MEDIA QUERIES PARA PC --- */
 @media (min-width: 768px) {
   .perfil-container {
-    grid-template-columns: 300px 1fr; /* 2 columnas en PC */
+    grid-template-columns: 300px 1fr;
   }
   .perfil-sidebar {
     border-bottom: none;

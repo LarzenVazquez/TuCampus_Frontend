@@ -1,6 +1,6 @@
 async function loadComponent(elementId, path) {
   const container = document.getElementById(elementId);
-  if (!container) return; // Si el elemento no existe en esta página, no hace nada
+  if (!container) return;
 
   try {
     const response = await fetch(path);
@@ -15,11 +15,8 @@ async function loadComponent(elementId, path) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Intentar cargar componentes de Tienda
   loadComponent("main-header", "/src/components/header.html");
   loadComponent("main-nav", "/src/components/bottom-nav.html");
-
-  // Intentar cargar componentes de Admin
   loadComponent("admin-sidebar", "/src/components/admin-sidebar.html");
 });
 
