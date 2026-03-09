@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuCampus - Mi Perfil</title>
+
+    <script src="/src/js/guard.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/css/variables.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+
+    <script
+      src="https://kit.fontawesome.com/1f47fb468a.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module">
+      import { initTheme, toggleTheme } from "/src/js/theme.js";
+      window.toggleTheme = toggleTheme;
+      initTheme();
+    </script>
+    <script src="/src/js/loader.js" defer></script>
+  </head>
+
+  <body class="dark">
+    <header class="store-header" id="main-header"></header>
+
+    <main class="perfil-wrapper">
+      <section class="perfil-container">
+        <div class="perfil-sidebar">
+          <div
+            id="user-avatar-container"
+            class="user-avatar-circle"
+            style="
+              width: 120px;
+              height: 120px;
+              font-size: 40px;
+              margin: 0 auto 20px;
+              overflow: hidden;
+            "
+          >
+            <i class="fa-solid fa-user"></i>
+          </div>
+
+          <h2
+            id="user-name-display"
+            style="font-weight: 900; margin-bottom: 5px"
+          >
+            Cargando...
+          </h2>
+          <p
+            id="user-email-display"
+            style="
+              color: var(--text-secondary);
+              font-size: 14px;
+              margin-bottom: 20px;
+            "
+          >
+            usuario@tucampus.edu
+          </p>
+
+          <button
+            onclick="window.subirFoto()"
+            class="tc-btn-theme"
+            style="width: 100%; font-size: 14px"
+          >
+            <i class="fa-solid fa-camera" style="margin-right: 8px"></i> Editar
+            Foto
+          </button>
+        </div>
+
+        <div class="perfil-content">
+          <h3 style="margin-bottom: 20px; font-weight: 800">Configuración</h3>
+
+          <div class="options-group">
+            <a href="#" class="perfil-option">
+              <div class="option-info">
+                <i class="fa-solid fa-address-card"></i>
+                <span>Datos Personales</span>
+              </div>
+              <i class="fa-solid fa-chevron-right arrow"></i>
+            </a>
+            <a href="#" class="perfil-option">
+              <div class="option-info">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Seguridad y Contraseña</span>
+              </div>
+              <i class="fa-solid fa-chevron-right arrow"></i>
+            </a>
+            <a href="#" class="perfil-option">
+              <div class="option-info">
+                <i class="fa-solid fa-bell"></i>
+                <span>Notificaciones</span>
+              </div>
+              <i class="fa-solid fa-chevron-right arrow"></i>
+            </a>
+
+            <button
+              onclick="handleLogout()"
+              class="perfil-option logout-opt"
+              style="
+                width: 100%;
+                border: none;
+                background: none;
+                font-family: inherit;
+                cursor: pointer;
+              "
+            >
+              <div class="option-info">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Cerrar Sesión</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav id="main-nav" class="bottom-nav"></nav>
+
+    <script type="module" src="/src/main.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+          document.getElementById("user-name-display").textContent =
+            user.nombre;
+          document.getElementById("user-email-display").textContent =
+            user.email ||
+            user.nombre.toLowerCase().replace(" ", ".") + "@uteq.edu";
+        }
+      });
+    </script>
+  </body>
+</html>

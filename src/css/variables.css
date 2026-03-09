@@ -1,0 +1,51 @@
+/* variables.css */
+/* RESET E ICONOS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+:root {
+  /* Colores de Marca Inmutables */
+  --accent: #6366f1;
+  --accent-dark: #4f46e5;
+  --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --success: #10b981;
+  --max-width: 1200px;
+  --nav-height: 70px;
+}
+
+/* MODO OSCURO (Default) */
+body.dark {
+  --bg: #1b1b1b;
+  --surface: #111827;
+  --elevated: #1a1a24;
+  --border: #26263a;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+}
+
+/* MODO CLARO */
+body.light {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --elevated: #f1f5f9;
+  --border: #e5e7eb;
+  --text-primary: #111827;
+  --text-secondary: #64748b;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  /* Esta transición hace que el cambio sea profesional */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  overflow-x: hidden;
+}

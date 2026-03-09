@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuCampus - Inicio</title>
+
+    <script src="/src/js/guard.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/css/variables.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+
+    <script
+      src="https://kit.fontawesome.com/1f47fb468a.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module">
+      import { initTheme, toggleTheme } from "/src/js/theme.js";
+      window.toggleTheme = toggleTheme;
+      initTheme();
+    </script>
+    <script src="/src/js/loader.js" defer></script>
+  </head>
+
+  <body class="dark">
+    <header class="store-header" id="main-header"></header>
+
+    <main class="tc-main-layout">
+      <section class="hero-card">
+        <div class="hero-info">
+          <h1>¡Hola, Jorge! 👋</h1>
+          <p>Tu universidad en la palma de tu mano.</p>
+        </div>
+      </section>
+
+      <div class="search-container">
+        <div class="tc-search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="¿Qué estás buscando?" />
+          <button class="filter-btn">
+            <i class="fa-solid fa-sliders"></i>
+            <span class="web-nav">Filtros</span>
+          </button>
+        </div>
+      </div>
+
+      <section class="category-scroll">
+        <button class="tc-chip active">Todo</button>
+        <button class="tc-chip">☕ Desayunos</button>
+        <button class="tc-chip">🍔 Comida</button>
+        <button class="tc-chip">🥤 Bebidas</button>
+        <button class="tc-chip">📝 Papelería</button>
+        <button class="tc-chip">🥗 Saludable</button>
+      </section>
+
+      <h2 class="section-title" style="margin: 20px 0">Menú del día</h2>
+
+      <div class="menu-grid">
+        <article class="menu-card">
+          <div class="menu-img-placeholder">
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <div class="menu-info">
+            <h3 class="item-name">Café Capuccino</h3>
+            <p class="item-desc">Vaso 12oz con canela</p>
+            <div class="card-footer">
+              <span class="item-price">$45.00</span>
+              <button class="add-btn-small">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <nav class="bottom-nav" id="main-nav"></nav>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

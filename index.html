@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuCampus - Iniciar Sesión</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/src/css/variables.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+
+    <script
+      src="https://kit.fontawesome.com/1f47fb468a.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module">
+      import { initTheme, toggleTheme } from "/src/js/theme.js";
+      window.toggleTheme = toggleTheme;
+      initTheme();
+    </script>
+  </head>
+
+  <body class="dark">
+    <main class="auth-container">
+      <section class="branding-section">
+        <i
+          class="fa-solid fa-graduation-cap"
+          style="font-size: 80px; margin-bottom: 20px"
+        ></i>
+        <h1>TuCampus</h1>
+        <p style="font-size: 20px; opacity: 0.9">
+          Tu universidad en la palma de tu mano.
+        </p>
+      </section>
+
+      <section class="form-section">
+        <div class="tc-card">
+          <div style="margin-bottom: 32px">
+            <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 8px">
+              Bienvenido
+            </h2>
+            <p style="color: var(--text-secondary); font-size: 14px">
+              Ingresa tus credenciales para continuar
+            </p>
+          </div>
+
+          <form id="login-form">
+            <div class="tc-input-group">
+              <label class="tc-label"
+                ><i class="fa-solid fa-envelope" style="margin-right: 8px"></i
+                >Correo institucional</label
+              >
+              <input
+                type="email"
+                class="tc-input"
+                placeholder="matricula@uteq.edu"
+                required
+              />
+            </div>
+
+            <div class="tc-input-group">
+              <label class="tc-label"
+                ><i class="fa-solid fa-lock" style="margin-right: 8px"></i
+                >Contraseña</label
+              >
+              <input
+                type="password"
+                class="tc-input"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+
+            <button type="submit" class="tc-btn-main">
+              Entrar
+              <i
+                class="fa-solid fa-right-to-bracket"
+                style="margin-left: 8px"
+              ></i>
+            </button>
+          </form>
+
+          <div
+            style="
+              margin-top: 24px;
+              text-align: center;
+              font-size: 14px;
+              color: var(--text-secondary);
+            "
+          >
+            ¿No tienes cuenta?
+            <a href="/auth/register.html" class="tc-link">Regístrate aquí</a>
+          </div>
+
+          <button
+            type="button"
+            class="tc-btn-theme"
+            onclick="toggleTheme()"
+            style="margin-top: 20px"
+          >
+            <i class="fa-solid fa-circle-half-stroke"></i> Cambiar modo
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

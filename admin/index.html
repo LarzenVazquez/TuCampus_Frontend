@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TuCampus Admin - Panel de Control</title>
+
+    <script src="/src/js/guard.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/css/variables.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+
+    <script
+      src="https://kit.fontawesome.com/1f47fb468a.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module" src="/src/main.js"></script>
+
+    <script type="module">
+      import { initTheme, toggleTheme } from "/src/js/theme.js";
+      window.toggleTheme = toggleTheme;
+      initTheme();
+    </script>
+  </head>
+
+  <body class="dark">
+    <div class="admin-layout">
+      <aside class="admin-sidebar" id="admin-sidebar"></aside>
+
+      <main class="admin-main">
+        <header
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+          "
+        >
+          <div>
+            <h1 style="font-size: 32px; font-weight: 900" id="welcome-title">
+              Bienvenido, Administrador
+            </h1>
+            <p style="color: var(--text-secondary)">
+              Aquí está lo que está pasando hoy en el campus.
+            </p>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              background: var(--surface);
+              padding: 10px 20px;
+              border-radius: 50px;
+              border: 1px solid var(--border);
+            "
+          >
+            <div style="text-align: right">
+              <p style="font-size: 14px; font-weight: 700" id="admin-name">
+                Cargando...
+              </p>
+              <p style="font-size: 12px; color: var(--text-secondary)">
+                Super Admin
+              </p>
+            </div>
+            <div
+              class="user-avatar-circle"
+              style="border-color: var(--accent); cursor: pointer"
+              onclick="handleLogout()"
+            >
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+          </div>
+        </header>
+
+        <section class="stats-grid">
+          <div class="stat-card">
+            <div style="display: flex; justify-content: space-between">
+              <span class="stat-label">Ventas Totales</span>
+              <i
+                class="fa-solid fa-dollar-sign"
+                style="color: var(--success)"
+              ></i>
+            </div>
+            <p class="stat-value">$12,450.00</p>
+            <p style="font-size: 12px; color: var(--success); font-weight: 700">
+              ↑ 8% este mes
+            </p>
+          </div>
+
+          <div class="stat-card">
+            <div style="display: flex; justify-content: space-between">
+              <span class="stat-label">Pedidos Hoy</span>
+              <i
+                class="fa-solid fa-shopping-bag"
+                style="color: var(--accent)"
+              ></i>
+            </div>
+            <p class="stat-value">42</p>
+            <p style="font-size: 12px; color: var(--text-secondary)">
+              12 pendientes de entrega
+            </p>
+          </div>
+
+          <div class="stat-card">
+            <div style="display: flex; justify-content: space-between">
+              <span class="stat-label">Stock Alerta</span>
+              <i
+                class="fa-solid fa-triangle-exclamation"
+                style="color: #f59e0b"
+              ></i>
+            </div>
+            <p class="stat-value">3 Items</p>
+            <p style="font-size: 12px; color: #f59e0b; font-weight: 700">
+              Revisar inventario
+            </p>
+          </div>
+        </section>
+
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+          "
+        >
+          <h2 style="font-weight: 800">Pedidos Recientes</h2>
+          <button
+            class="tc-link"
+            style="background: none; border: none; cursor: pointer"
+          >
+            Ver todo el historial
+          </button>
+        </div>
+
+        <div class="tc-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Orden</th>
+                <th>Cliente</th>
+                <th>Tipo</th>
+                <th>Hora</th>
+                <th>Total</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 700; color: var(--accent)">#1024</td>
+                <td>Marcos Ruiz</td>
+                <td>
+                  <i class="fa-solid fa-utensils" style="margin-right: 8px"></i
+                  >Cafetería
+                </td>
+                <td>12:45 PM</td>
+                <td style="font-weight: 700">$140.00</td>
+                <td>
+                  <button class="add-btn-small" title="Marcar como listo">
+                    <i class="fa-solid fa-check"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+          document.getElementById("admin-name").textContent = user.nombre;
+          document.getElementById("welcome-title").textContent =
+            `Bienvenido, ${user.nombre.split(" ")[0]}`;
+        }
+      });
+    </script>
+  </body>
+</html>
