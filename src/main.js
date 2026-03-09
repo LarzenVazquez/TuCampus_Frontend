@@ -1,9 +1,9 @@
 import { apiService } from "./services/apiservices.js";
 
 /* Manejo de sesión y protección de rutas al cargar el DOM */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
-  const user = JSON.parse(localStorage.getItem("user"));
+  let user = JSON.parse(localStorage.getItem("user"));
   const path = window.location.pathname;
 
   /* Redirección automática si el usuario ya está autenticado */
@@ -15,14 +15,33 @@ document.addEventListener("DOMContentLoaded", () => {
   if (token && user && isAuthPage) {
     window.location.href =
       user.rol === "admin" ? "/admin/index.html" : "/store/index.html";
+    return;
+  }
+
+  /* Si estamos en una página privada y hay token, refrescar datos del servidor */
+  if (token && !isAuthPage) {
+    try {
+      const { data: freshUser } = await apiService.auth.getProfile();
+      localStorage.setItem("user", JSON.stringify(freshUser));
+      user = freshUser; // Actualizamos la variable local para la inyección
+    } catch (error) {
+      console.error("Error al refrescar perfil:", error);
+    }
   }
 
   /* Inyección de datos del usuario en la interfaz */
   if (user) {
     const nameEl = document.querySelector(".perfil-sidebar h2");
     const emailEl = document.querySelector(".perfil-sidebar p");
+    const avatar = document.getElementById("user-avatar-container");
+
     if (nameEl) nameEl.textContent = user.nombre;
     if (emailEl) emailEl.textContent = user.email || "";
+
+    /* Inyección de la foto de perfil si existe en el objeto del usuario */
+    if (avatar && user.fotoUrl) {
+      avatar.innerHTML = `<img src="${user.fotoUrl}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
+    }
   }
 });
 
@@ -48,6 +67,9 @@ if (loginForm) {
       /* Almacenamiento de credenciales de acceso */
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
+
+      /* Alert de login exitoso para pausar y consultar encriptacion hibrida */
+      alert("Login exitoso");
 
       /* Direccionamiento por rol */
       window.location.href =
@@ -116,6 +138,13 @@ window.subirFoto = async () => {
 
       avatar.innerHTML = `<img src="${res.url}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
 
+      /* Actualización del localStorage para persistencia inmediata */
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        user.fotoUrl = res.url;
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+
       alert("Imagen actualizada");
     } catch (err) {
       alert("Error al subir el archivo");
@@ -127,7 +156,11 @@ window.subirFoto = async () => {
 
 /* Cierre de sesión */
 window.handleLogout = async () => {
-  if (confirm("¿Desea salir del sistema?")) {
+  if (confirm("¿Seguro que desea cerrar sesion? ")) {
     await apiService.auth.logout();
+    /* Limpieza de almacenamiento local */
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/index.html";
   }
 };
