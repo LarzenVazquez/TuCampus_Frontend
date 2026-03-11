@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuCampus - Monitor de Cocina (KDS)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/css/variables.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <script src="https://kit.fontawesome.com/1f47fb468a.js" crossorigin="anonymous"></script>
+    <style>
+      /* Estilos específicos para la cocina (Tipografía más grande RNF-11) */
+      .kds-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+      .ticket-item {
+        font-size: 18px;
+        margin-bottom: 8px;
+        border-bottom: 1px dashed var(--border);
+        padding-bottom: 8px;
+      }
+    </style>
+  </head>
+
+  <body class="dark" style="background-color: #000;">
+    
+    <header style="background: var(--surface); padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border);">
+      <h1 style="color: var(--accent); margin: 0;">TuCampus <span style="color: white; font-weight: 400;">| Monitor de Cocina</span></h1>
+      <span class="status-pill status-success" style="font-size: 16px;">
+        <i class="fa-solid fa-wifi"></i> Conectado (Websockets)
+      </span>
+    </header>
+
+    <div class="kds-grid">
+      
+      <div class="tc-card" style="max-width: 100%; border-top: 5px solid #f59e0b;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+          <h2 style="font-size: 24px; margin: 0;">ORD-402</h2>
+          <span class="status-pill status-pending">NUEVA</span>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 16px;">Cliente: <strong>Andrea Vasquez</strong></p>
+        
+        <div style="margin-bottom: 24px;">
+          <div class="ticket-item">
+            <strong style="color: var(--accent);">1x</strong> Café Capuccino
+          </div>
+          <div class="ticket-item">
+            <strong style="color: var(--accent);">1x</strong> Chilaquiles Verdes
+            <br><span style="color: #f87171; font-size: 14px;"><i class="fa-solid fa-triangle-exclamation"></i> Nota: Sin cebolla</span>
+          </div>
+        </div>
+
+        <button class="tc-btn-main" style="width: 100%;">
+          Empezar a Preparar
+        </button>
+      </div>
+
+      <div class="tc-card" style="max-width: 100%; border-top: 5px solid var(--accent);">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+          <h2 style="font-size: 24px; margin: 0;">ORD-401</h2>
+          <span class="status-pill" style="background: rgba(99, 102, 241, 0.1); color: var(--accent);">EN COCINA</span>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 16px;">Cliente: <strong>Luis Daniel</strong></p>
+        
+        <div style="margin-bottom: 24px;">
+          <div class="ticket-item">
+            <strong style="color: var(--accent);">2x</strong> Molletes con jamón
+          </div>
+        </div>
+
+        <button class="tc-btn-main" style="width: 100%; background: var(--success);">
+          Marcar como LISTA <i class="fa-solid fa-check"></i>
+        </button>
+      </div>
+
+    </div>
+
+  </body>
+</html>
