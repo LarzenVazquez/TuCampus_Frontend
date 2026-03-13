@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuCampus - Admin Menú</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/css/variables.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <script src="https://kit.fontawesome.com/1f47fb468a.js" crossorigin="anonymous"></script>
+    <script type="module">
+      import { initTheme, toggleTheme } from "/src/js/theme.js";
+      window.toggleTheme = toggleTheme;
+      initTheme();
+    </script>
+  </head>
+
+  <body class="dark">
+    <header style="background: var(--surface); padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border);">
+      <h1 style="color: var(--accent); margin: 0; font-size: 20px;">TuCampus <span style="color: var(--text-secondary); font-weight: 400;">| Admin Menú</span></h1>
+      <button class="tc-btn-theme" style="width: auto; margin-top: 0; padding: 8px 16px;" onclick="window.toggleTheme()">
+        <i class="fa-solid fa-moon"></i> / <i class="fa-solid fa-sun"></i>
+      </button>
+    </header>
+
+    <main class="tc-main-layout" style="padding-top: 30px; padding-bottom: 100px;">
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 class="section-title" style="margin: 0;">Gestión de Platillos</h2>
+        <button class="tc-btn-main" style="width: auto; padding: 10px 20px; font-size: 14px;">
+          <i class="fa-solid fa-plus"></i> Nuevo Producto
+        </button>
+      </div>
+
+      <div class="tc-table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Chilaquiles Verdes</strong></td>
+              <td>$45.00</td>
+              <td>20</td>
+              <td><span class="status-pill status-success">DISPONIBLE</span></td>
+              <td>
+                <button class="add-btn-small" style="background: var(--elevated); color: var(--text-primary); margin-right: 5px;"><i class="fa-solid fa-pen"></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Café Capuccino</strong></td>
+              <td>$35.00</td>
+              <td>0</td>
+              <td><span class="status-pill status-pending">AGOTADO</span></td>
+              <td>
+                <button class="add-btn-small" style="background: var(--elevated); color: var(--text-primary); margin-right: 5px;"><i class="fa-solid fa-pen"></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Torta de Jamón</strong></td>
+              <td>$30.00</td>
+              <td>--</td>
+              <td><span class="status-pill" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;">OCULTO</span></td>
+              <td>
+                <button class="add-btn-small" style="background: var(--elevated); color: var(--text-primary); margin-right: 5px;"><i class="fa-solid fa-pen"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </body>
+</html>

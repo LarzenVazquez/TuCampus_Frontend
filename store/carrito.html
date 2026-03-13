@@ -10,13 +10,18 @@
     <link rel="stylesheet" href="/src/css/layout.css" />
     <script src="https://kit.fontawesome.com/1f47fb468a.js" crossorigin="anonymous"></script>
     <script type="module">
-      import { initTheme } from "/src/js/theme.js";
+      import { initTheme, toggleTheme } from "/src/js/theme.js";
+      window.toggleTheme = toggleTheme;
       initTheme();
     </script>
   </head>
 
   <body class="dark">
-    <header class="store-header" id="main-header"></header>
+    <header class="store-header" id="main-header"> 
+        <button class="tc-btn-theme" onclick="window.toggleTheme()">
+  Cambiar Tema 🌓
+</button>
+    </header>
 
     <main class="tc-main-layout" style="padding-top: 20px; padding-bottom: 100px;">
       

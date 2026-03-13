@@ -12,15 +12,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px;
-  color: white;
+  /* padding: 60px; */
+  color: black;
 }
 
 .branding-section h1 {
   font-size: 72px;
   font-weight: 900;
   letter-spacing: -3px;
-  margin-bottom: 10px;
+  font-family: "Lato", sans-serif;
 }
 
 .form-section {
