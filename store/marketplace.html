@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuCampus - Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/css/variables.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <script src="https://kit.fontawesome.com/1f47fb468a.js" crossorigin="anonymous"></script>
+    
+    <script type="module">
+      import { initTheme, toggleTheme } from "/src/js/theme.js";
+      window.toggleTheme = toggleTheme;
+      initTheme();
+    </script>
+  </head>
+
+  <body class="dark">
+    <header class="store-header" id="main-header">
+        <button class="tc-btn-theme" onclick="window.toggleTheme()">
+  Cambiar Tema 🌓
+</button>
+    </header>
+
+    <main class="tc-main-layout" style="padding-top: 20px; padding-bottom: 100px;">
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 class="section-title" style="margin: 0;">Marketplace UTEQ</h2>
+        <button class="tc-btn-main" style="width: auto; padding: 10px 20px; font-size: 14px;">
+          <i class="fa-solid fa-camera"></i> Vender
+        </button>
+      </div>
+
+      <div class="search-container">
+        <div class="tc-search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Buscar libros, materiales, calculadoras..." />
+        </div>
+      </div>
+
+      <section class="category-scroll">
+        <button class="tc-chip active">Todo</button>
+        <button class="tc-chip">📚 Libros</button>
+        <button class="tc-chip">📐 Material</button>
+        <button class="tc-chip">💻 Electrónicos</button>
+      </section>
+
+      <div class="menu-grid">
+        
+        <article class="menu-card">
+          <div class="menu-img-placeholder" style="background: var(--surface); border: 1px dashed var(--border);">
+            <i class="fa-solid fa-book" style="color: var(--accent);"></i>
+          </div>
+          <div class="menu-info">
+            <h3 class="item-name">Cálculo Diferencial</h3>
+            <p class="item-desc" style="font-size: 12px;">Casi nuevo, 3ra Edición.</p>
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px; margin-bottom: 8px;">
+              <div class="user-avatar-circle" style="width: 20px; height: 20px; font-size: 10px;">GL</div>
+              <span style="font-size: 12px; color: var(--text-secondary);">Guillermo L.</span>
+            </div>
+            <div class="card-footer">
+              <span class="item-price">$150.00</span>
+              <button class="add-btn-small" title="Contactar Vendedor">
+                <i class="fa-brands fa-whatsapp"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-img-placeholder" style="background: var(--surface); border: 1px dashed var(--border);">
+            <i class="fa-solid fa-calculator" style="color: var(--accent);"></i>
+          </div>
+          <div class="menu-info">
+            <h3 class="item-name">Calculadora Casio</h3>
+            <p class="item-desc" style="font-size: 12px;">Pila nueva incluida.</p>
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px; margin-bottom: 8px;">
+              <div class="user-avatar-circle" style="width: 20px; height: 20px; font-size: 10px;">LD</div>
+              <span style="font-size: 12px; color: var(--text-secondary);">Luis Daniel</span>
+            </div>
+            <div class="card-footer">
+              <span class="item-price">$300.00</span>
+              <button class="add-btn-small" title="Contactar Vendedor">
+                <i class="fa-brands fa-whatsapp"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </main>
+
+    <nav class="bottom-nav" id="main-nav"></nav>
+  </body>
+</html>
