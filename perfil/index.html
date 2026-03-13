@@ -126,17 +126,5 @@
 
     <script type="module" src="/src/main.js"></script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (user) {
-          document.getElementById("user-name-display").textContent =
-            user.nombre;
-          document.getElementById("user-email-display").textContent =
-            user.email ||
-            user.nombre.toLowerCase().replace(" ", ".") + "@uteq.edu";
-        }
-      });
-    </script>
   </body>
 </html>

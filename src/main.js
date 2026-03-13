@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   /* Redirección automática si el usuario ya está autenticado */
   const isAuthPage =
-    path.includes("indexlogin.html") ||
+    path.includes("login.html") ||
     path.includes("register.html") ||
     path === "/";
 
@@ -34,6 +34,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const nameEl = document.querySelector(".perfil-sidebar h2");
     const emailEl = document.querySelector(".perfil-sidebar p");
     const avatar = document.getElementById("user-avatar-container");
+    const nameHomeEl = document.getElementById("user-name-home");
+    if (nameHomeEl) {
+      nameHomeEl.textContent = user.nombre.split(" ")[0]; 
+    }
 
     if (nameEl) nameEl.textContent = user.nombre;
     if (emailEl) emailEl.textContent = user.email || "";
@@ -164,3 +168,52 @@ window.handleLogout = async () => {
     window.location.href = "/index.html";
   }
 };
+  //Catálogo de productos 
+const cargarCatalogo = async () => {
+  const contenedor = document.getElementById("catalogo-productos");
+  if (!contenedor) return;
+
+  try {
+    contenedor.innerHTML = '<p style="text-align:center; width:100%; color: var(--text-secondary);">Cargando menú...</p>';
+    const productos = await apiService.products.getAll();
+    contenedor.innerHTML = "";
+
+    if (productos.length === 0) {
+      contenedor.innerHTML = '<p style="text-align:center; width:100%;">No hay platillos disponibles por ahora 🥺</p>';
+      return;
+    }
+
+    productos.forEach(producto => {
+      const tarjetaHTML = `
+        <article class="menu-card">
+          <div class="menu-img-placeholder">
+            ${producto.imagenUrl 
+                ? `<img src="${producto.imagenUrl}" style="width:100%; height:100%; border-radius:16px; object-fit:cover;">` 
+                : `<i class="fa-solid fa-utensils"></i>`
+            }
+          </div>
+          <div class="menu-info">
+            <h3 class="item-name">${producto.nombre}</h3>
+            <p class="item-desc" style="font-size: 12px;">${producto.descripcion || 'Delicioso platillo de la cafetería'}</p>
+            <div class="card-footer">
+              <span class="item-price">$${Number(producto.precio).toFixed(2)}</span>
+              <button class="add-btn-small" onclick="alert('Agregado: ${producto.nombre}')">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      `;
+      contenedor.innerHTML += tarjetaHTML;
+    });
+
+  } catch (error) {
+    console.error("Error al cargar los productos:", error);
+    contenedor.innerHTML = '<p style="color: #ef4444; text-align:center;">Error al conectar con la base de datos.</p>';
+  }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  cargarCatalogo();
+});
+

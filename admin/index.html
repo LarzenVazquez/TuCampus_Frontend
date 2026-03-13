@@ -173,16 +173,6 @@
         </div>
       </main>
     </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (user) {
-          document.getElementById("admin-name").textContent = user.nombre;
-          document.getElementById("welcome-title").textContent =
-            `Bienvenido, ${user.nombre.split(" ")[0]}`;
-        }
-      });
-    </script>
+  <script type="module" src="/src/main.js"></script>
   </body>
 </html>

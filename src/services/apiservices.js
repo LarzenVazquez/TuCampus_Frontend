@@ -77,4 +77,43 @@ export const apiService = {
       }
     },
   },
+  
+  products: {
+    /* Productos cafetería*/
+    getAll: async () => {
+      const { data } = await api.get("/products");
+      return data;
+    },
+    /* Marketplace */
+    getMarketplace: async () => {
+      const { data } = await api.get("/products/marketplace");
+      return data;
+    },
+    /* Nuevo platillo */
+    create: async (productData) => {
+      return await api.post("/products", productData);
+    }
+  },
+
+  orders: {
+    /* Carrito: Enviar el pedido a la base de datos */
+    createOrder: async (orderData) => {
+      const { data } = await api.post("/orders", orderData);
+      return data;
+    },
+    /* Historial */
+    getMyOrders: async () => {
+      const { data } = await api.get("/orders/me");
+      return data;
+    },
+    /* Órdenes pendientes */
+    getPending: async () => {
+      const { data } = await api.get("/orders/pending");
+      return data;
+    },
+    /* Status orden */
+    updateStatus: async (orderId, newStatus) => {
+      return await api.patch(`/orders/${orderId}/status`, { status: newStatus });
+    }
+  }
 };
